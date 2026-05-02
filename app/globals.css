@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: #07070A;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-image:
+    radial-gradient(1100px 600px at 50% -100px, rgba(198, 255, 61, 0.15), transparent 60%),
+    radial-gradient(800px 400px at 100% 30%, rgba(155, 211, 0, 0.07), transparent 60%);
+}
+
+::selection { background: #C6FF3D; color: #07070A; }
+
+/* Green focus ring everywhere — kill default yellow/blue browser outlines. */
+*:focus { outline: none; }
+input, textarea, select, button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: none !important;
+  border-color: rgba(198, 255, 61, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(198, 255, 61, 0.18) !important;
+}
+button:focus-visible, a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(198, 255, 61, 0.35);
+  border-radius: inherit;
+}
+/* Chrome / Safari autofill — kill yellow */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px rgba(7, 7, 10, 0.95) inset;
+  caret-color: #C6FF3D;
+  border-color: rgba(198, 255, 61, 0.4) !important;
+  transition: background-color 9999s ease-out, color 9999s ease-out;
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .shadow-glow { box-shadow: 0 0 0 1px rgba(198,255,61,.18), 0 20px 80px -20px rgba(198,255,61,.35); }
+
+  .ring-line { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
+
+  .glass {
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .mask-radial {
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+  }
+
+  .mask-bottom {
+    mask-image: linear-gradient(to bottom, black 60%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+  }
+
+  .scroll-hide::-webkit-scrollbar { display: none; }
+  .scroll-hide { scrollbar-width: none; }
+
+  /* Animated gradient text */
+  .text-shimmer {
+    background: linear-gradient(110deg, #fff 35%, #C6FF3D 50%, #fff 65%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+}
+
+/* Scroll marquee gap variable default */
+.marquee-row { --gap: 2.5rem; gap: var(--gap); }

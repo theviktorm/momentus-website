@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Logo } from "./ui/logo";
 import { CALENDLY_URL } from "@/lib/config";
+import { track } from "@/lib/track";
 
 const items = [
   { href: "#flywheel", label: "Flywheel" },
@@ -58,6 +59,7 @@ export function Nav() {
             href={CALENDLY_URL}
             target="_blank"
             rel="noreferrer"
+            onClick={() => track("cta_click", { location: "nav", label: "book_free_call" })}
             className="group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-accent px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-bg transition hover:bg-accent-soft md:text-[11px]"
           >
             <span className="hidden sm:inline">Book a free call</span>

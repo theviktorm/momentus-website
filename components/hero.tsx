@@ -5,6 +5,7 @@ import { Aurora } from "./ui/aurora";
 import { WordReveal } from "./ui/word-reveal";
 import { Magnetic } from "./ui/magnetic";
 import { CALENDLY_URL } from "@/lib/config";
+import { track } from "@/lib/track";
 
 export function Hero() {
   return (
@@ -74,6 +75,7 @@ export function Hero() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noreferrer"
+              onClick={() => track("cta_click", { location: "hero", label: "book_free_call" })}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-accent px-7 py-4 text-base font-medium text-bg transition hover:bg-accent-soft"
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -86,6 +88,7 @@ export function Hero() {
           <Magnetic strength={0.2}>
             <a
               href="#flywheel"
+              onClick={() => track("cta_click", { location: "hero", label: "see_flywheel" })}
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-7 py-4 text-base text-white/85 transition hover:bg-white/[0.06]"
             >
               See the flywheel

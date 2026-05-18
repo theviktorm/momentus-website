@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "./ui/logo";
 
 export function Footer() {
@@ -20,7 +21,9 @@ export function Footer() {
             <h4 className="text-xs uppercase tracking-[0.18em] text-white/45">Legal</h4>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
-                <span className="cursor-default text-white/70">Privacy Policy</span>
+                <Link className="text-white/70 transition hover:text-accent" href="/privacy">
+                  Privacy Policy
+                </Link>
               </li>
             </ul>
           </div>

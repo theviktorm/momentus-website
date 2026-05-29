@@ -96,3 +96,14 @@ select:-webkit-autofill {
 
 /* Scroll marquee gap variable default */
 .marquee-row { --gap: 2.5rem; gap: var(--gap); }
+
+/* Vertical sidebar decorator — used by VerticalDecorator. Moves the duplicated
+   track up by 50% so the seam never shows. Pauses when reduced-motion is set. */
+@keyframes vd-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.vd-track { animation: vd-scroll var(--vd-duration, 60s) linear infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  .vd-track { animation: none; }
+}

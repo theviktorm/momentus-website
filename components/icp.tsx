@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
+import { SectionEyebrow } from "./ui/section-eyebrow";
 
 const fits = [
   "You're the one people look at when someone asks \"what's our AI plan?\"",
@@ -21,9 +22,7 @@ export function ICP() {
     <section id="fit" className="relative py-28">
       <div className="container">
         <div className="mx-auto mb-14 max-w-3xl text-center">
-          <span className="font-mono inline-block rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-accent">
-            Fit check
-          </span>
+          <SectionEyebrow id="fit" label="Fit check" />
           <h2 className="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-6xl">
             We start by working with the <span className="text-accent">right few.</span>
           </h2>

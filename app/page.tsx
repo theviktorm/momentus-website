@@ -12,6 +12,7 @@ import { Process } from "@/components/process";
 import { ValuesMarquee } from "@/components/values-marquee";
 import { Testimonials } from "@/components/testimonials";
 import { ICP } from "@/components/icp";
+import { FAQ } from "@/components/faq";
 import { CTAForm } from "@/components/cta-form";
 import { Footer } from "@/components/footer";
 import { RecentWins } from "@/components/recent-wins";
@@ -34,6 +35,7 @@ export default function Home() {
         <Process />
         <ValuesMarquee />
         <ICP />
+        <FAQ />
         <CTAForm />
       </main>
       <Footer />

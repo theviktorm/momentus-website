@@ -1,7 +1,9 @@
 "use client";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { BorderBeam } from "./ui/border-beam";
 import { CALENDLY_URL } from "@/lib/config";
+import { SectionEyebrow } from "./ui/section-eyebrow";
 
 const services = [
   {
@@ -10,6 +12,7 @@ const services = [
     bullets: ["Entity & schema engineering", "Per-platform signal stacks", "Citation reverse-engineering"],
     span: "md:col-span-2 md:row-span-2",
     visual: "geo",
+    href: "/services/geo",
   },
   {
     title: "Paid that compounds",
@@ -17,6 +20,7 @@ const services = [
     bullets: ["Search & social paid", "Brand-search capture", "Quality Score engineering"],
     span: "md:col-span-2",
     visual: "paid",
+    href: "/services/paid",
   },
   {
     title: "Total presence control",
@@ -24,6 +28,7 @@ const services = [
     bullets: ["Web & content systems", "Social signal alignment", "YouTube/video for AI"],
     span: "md:col-span-1",
     visual: "presence",
+    href: "/services/geo-x-paid",
   },
   {
     title: "Proprietary tooling",
@@ -31,6 +36,7 @@ const services = [
     bullets: ["AI perception testing", "Citation tracking", "Real-time gap surfacing"],
     span: "md:col-span-1",
     visual: "tools",
+    href: "/services/geo-x-paid",
   },
 ];
 
@@ -40,9 +46,7 @@ export function Services() {
       <div className="container">
         <div className="mb-14 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div className="max-w-2xl">
-            <span className="font-mono inline-block rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-accent">
-              Services
-            </span>
+            <SectionEyebrow id="services" />
             <h2 className="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-6xl">
               Engineered for the answer engines.
             </h2>
@@ -60,21 +64,32 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className={`glass group relative overflow-hidden rounded-2xl p-7 ${s.span}`}
+              className={`group relative ${s.span}`}
             >
-              {i === 0 && <BorderBeam size={300} duration={14} />}
-              <div className="relative z-10 flex h-full flex-col">
-                <Visual kind={s.visual} />
-                <h3 className="font-display mt-6 text-2xl tracking-tight md:text-3xl">{s.title}</h3>
-                <p className="mt-2 max-w-md text-white/65">{s.body}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {s.bullets.map((b) => (
-                    <li key={b} className="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs text-white/70">
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Link
+                href={s.href}
+                className="glass relative block h-full overflow-hidden rounded-2xl p-7 transition hover:border-accent/40"
+              >
+                {i === 0 && <BorderBeam size={300} duration={14} />}
+                <div className="relative z-10 flex h-full flex-col">
+                  <Visual kind={s.visual} />
+                  <h3 className="font-display mt-6 text-2xl tracking-tight md:text-3xl">{s.title}</h3>
+                  <p className="mt-2 max-w-md text-white/65">{s.body}</p>
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs text-white/70">
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm text-white/85 transition group-hover:text-accent">
+                    Learn more
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition group-hover:translate-x-0.5">
+                      <path d="M5 12h14M13 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

@@ -1,6 +1,7 @@
 "use client";
 import { motion, useMotionValue, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { SectionEyebrow } from "./ui/section-eyebrow";
 
 const steps = [
   {
@@ -60,9 +61,7 @@ export function Process() {
     <section id="process" className="relative py-28">
       <div className="container">
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <span className="font-mono inline-block rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-accent">
-            How we work
-          </span>
+          <SectionEyebrow id="process" label="How we work" />
           <h2 className="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-6xl">
             We engineer AI visibility, <span className="text-white/40">not chase it.</span>
           </h2>

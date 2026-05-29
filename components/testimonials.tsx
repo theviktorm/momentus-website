@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
+import { SectionEyebrow } from "./ui/section-eyebrow";
 
 interface T {
   type: "quote" | "video";
@@ -56,9 +57,7 @@ export function Testimonials() {
       <div className="container">
         <div className="mb-14 flex flex-col items-end justify-between gap-6 md:flex-row">
           <div className="max-w-2xl">
-            <span className="font-mono inline-block rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-accent">
-              Operators talking
-            </span>
+            <SectionEyebrow id="operators" label="Operators talking" />
             <h2 className="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-6xl">
               The people who actually own the number.
             </h2>

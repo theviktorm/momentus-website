@@ -6,6 +6,7 @@ import { WordReveal } from "./ui/word-reveal";
 import { Magnetic } from "./ui/magnetic";
 import { CALENDLY_URL } from "@/lib/config";
 import { track } from "@/lib/track";
+import { AIRotator } from "./ui/ai-rotator";
 
 export function Hero() {
   return (
@@ -14,11 +15,21 @@ export function Hero() {
       <Spotlight className="-top-40 left-1/2 -translate-x-1/2" />
       <div className="absolute inset-0 -z-10 grid-bg mask-radial opacity-50" />
       <div className="container relative">
+        {/* Year + niche stamp — anchors recency + ICP in a single line above the pill. */}
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-mono mx-auto mb-4 w-fit text-[10px] uppercase tracking-[0.22em] text-white/55"
+        >
+          2026 · GEO × Paid for B2B &amp; DTC at $5M–$500M
+        </motion.p>
+
         {/* Top stat pill */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="mx-auto mb-10 flex w-fit items-center gap-3 rounded-full border border-accent/25 bg-accent/10 px-4 py-2 backdrop-blur"
         >
           <span className="relative flex h-2 w-2">
@@ -50,6 +61,9 @@ export function Hero() {
             italic={["block", "you", "out"]}
           />
         </h1>
+
+        {/* AI platform rotator */}
+        <AIRotator />
 
         {/* Sub */}
         <motion.p
@@ -135,7 +149,9 @@ function DashboardMock() {
         <div className="rounded-xl bg-black/30 p-5 ring-line">
           <div className="mb-3 flex items-baseline justify-between">
             <h3 className="text-sm text-white/70">AI citations · last 30 days</h3>
-            <span className="text-xs text-accent">+318%</span>
+            <span className="font-mono inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-accent shadow-[0_0_18px_rgba(198,255,61,0.28)]">
+              +318%
+            </span>
           </div>
           <Sparkline />
           <div className="mt-3 grid grid-cols-3 gap-2 text-center text-[11px] text-white/50">

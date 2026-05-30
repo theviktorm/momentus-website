@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { JsonLd } from "@/components/ui/json-ld";
+import { serviceJsonLd } from "@/lib/seo/service";
+import { breadcrumbJsonLd } from "@/lib/seo/breadcrumb";
 import { ServiceLayout } from "../_components/ServiceLayout";
 import { GeoXPaidSampleReport } from "../_components/SampleReports";
 import { SHARED_CASES } from "../_components/shared";
+
+const SITE_BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://momentus.ai";
 
 const SUB =
   "GEO creates trust. Paid multiplies it. AI reinforces the winner. The compounding loop only closes when both halves are run by the same team — not two agencies trading blame.";
@@ -36,8 +41,21 @@ export const metadata: Metadata = {
 };
 
 export default function GeoXPaidPage() {
+  const serviceSchema = serviceJsonLd({
+    url: `${SITE_BASE}/services/geo-x-paid`,
+    name: "The full flywheel. Both halves, run together.",
+    description: SUB,
+    serviceType: "GEO and Paid Media (Integrated Flywheel)",
+  });
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "GEO × Paid", href: "/services/geo-x-paid" },
+  ]);
+
   return (
     <>
+      <JsonLd data={[serviceSchema, breadcrumbSchema]} />
       <Nav />
       <main>
         <ServiceLayout

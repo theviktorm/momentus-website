@@ -16,10 +16,16 @@ import { FAQ } from "@/components/faq";
 import { CTAForm } from "@/components/cta-form";
 import { Footer } from "@/components/footer";
 import { RecentWins } from "@/components/recent-wins";
+import { JsonLd } from "@/components/ui/json-ld";
+import { faqJsonLd } from "@/lib/seo/faq";
+import { FAQS_QA } from "@/lib/faqs";
 
 export default function Home() {
+  const faqSchema = faqJsonLd(FAQS_QA);
+
   return (
     <>
+      <JsonLd data={faqSchema} />
       <Nav />
       <main>
         <Hero />

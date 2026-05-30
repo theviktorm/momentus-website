@@ -3,19 +3,74 @@ title: "GEO vs SEO: the dictionary nobody wrote yet"
 dek: "Different signals, different surfaces, different timelines. The mistake is treating one as a subset of the other."
 date: "2026-05-12"
 author: "Viktor Mozsa"
-readMinutes: 6
+readMinutes: 7
 tags: ["GEO", "SEO", "Strategy"]
-draft: true
+draft: false
 ---
 
 The most common question in our intake calls is some version of "isn't GEO just structured data done well?" It is not. SEO optimizes a brand for a ranking algorithm whose unit of output is a list of blue links. GEO optimizes a brand for a recommendation algorithm whose unit of output is a sentence. Lists tolerate ten winners; sentences tolerate one or two. That is a different game with a different scoreboard, and the team that confuses the two ships content that wins neither.
 
-<!-- DRAFT
-Sections to write:
-1. The surface taxonomy: SERP vs answer panel vs chat completion vs agent-driven retrieval.
-2. The signal taxonomy: backlinks vs structured citations vs sentiment aggregation vs entity graph density.
-3. The timeline taxonomy: SEO compounds over 6-18 months on backlinks; GEO compounds over 2-6 months on consistency.
-4. The org chart implication: who owns each, why putting them under the same head of content is a mistake.
-5. The math: where they reinforce each other (entity consistency, structured data) vs where they actively conflict (keyword stuffing tanks GEO; over-conversational content tanks SEO).
-6. Decision framework: when to invest in which based on category maturity, competitor density, AI penetration of the buyer journey.
--->
+## "Isn't GEO just structured data?"
+
+The confusion is understandable. Both disciplines obsess over how machines read the web. Both reward clean schema, fast pages, and authoritative sources. Both produce dashboards full of impression and citation counts. From a distance, GEO looks like SEO with a different acronym on the slide.
+
+It isn't. The unit of currency is different, and once you see that, the rest of the dictionary falls into place.
+
+SEO's unit of currency is the **page**. You build a page, you optimize it against a query, and you fight ten other pages for one of ten ranked slots. The buyer enters your funnel by clicking a link. The work is page-level: title tags, internal anchors, content depth, backlink profile pointing at that URL.
+
+GEO's unit of currency is the **entity**. You build a brand's coherent representation across the web — pages you own, pages you don't, structured records, third-party coverage — and the model decides whether to name your brand inside a sentence it generates. The buyer enters your funnel having already been told you are the answer. The work is entity-level: consistency of category claim across every surface the model retrieves from, plus the structured proof that backs it.
+
+> Page-ranking is a competition for slots. Entity-recommendation is a competition for vocabulary.
+
+If your category vocabulary doesn't include your brand, you don't get cited. You don't get to fight for the citation. You don't get a snippet to argue from. You are simply not in the answer.
+
+## The three things SEO does that GEO doesn't
+
+1. **Keyword targeting at the page level.** A great SEO program maps queries to URLs and tunes each URL for its query. GEO does not work this way. Models don't retrieve a URL because it targets a keyword — they retrieve sources that reinforce an entity's claim to a category. You can rank #1 for `"best comfort shoes"` and never get named when someone asks ChatGPT the same question.
+2. **SERP feature optimization.** Featured snippets, People Also Ask, image packs, knowledge panels — those are Google surfaces with documented optimization tactics. AI surfaces have no equivalents. There is no schema you can ship to win a Perplexity citation. The signal is upstream of the page.
+3. **Link velocity as a primary lever.** SEO still rewards a steady acquisition of relevant backlinks. GEO is largely indifferent to link velocity once a baseline of authority is reached. What it rewards is **the diversity and consistency of sources that mention you in a coherent category context** — which is adjacent to backlinks but not the same instrument.
+
+None of these are wrong things to do. They just don't move the citation-share needle, and teams who try to spend their way to AI visibility through link-building burn money and runway.
+
+## The three things GEO does that SEO doesn't
+
+1. **Entity coherence across the open web.** A model's representation of your brand is a composite of every credible source that mentions you. If Wikipedia describes you one way, your homepage another way, and your G2 listing a third way, the model averages noise. GEO work starts with auditing every public surface that contributes to your entity — and fixing the ones that disagree with your positioning.
+2. **Per-platform signal layers.** ChatGPT, Perplexity, Gemini, and Claude do not interpret your category the same way. Each model weighs sources differently — some lean heavier on Reddit, some on editorial, some on structured product data, some on real-time search. A serious GEO program ships per-platform work: a Perplexity-shaped surface looks different from a ChatGPT-shaped one.
+3. **Citation reverse-engineering.** When a model cites a competitor instead of you, you can read the citation, read the source, and learn exactly which sentence in which paragraph on which page tipped the answer. That is a feedback loop SEO has never had. GEO operators live in it.
+
+<aside>
+**Why backlinks barely move citation share.** This one always lands badly with SEO teams, so let me be specific about it. Backlinks are an authority signal. They tell a ranking algorithm "this page deserves trust." Modern retrieval-augmented models don't retrieve at the page level — they retrieve at the chunk level, and they weight chunks by semantic relevance to the prompt, then re-rank using factors that include source authority but are dominated by **how often the entity-claim repeats across the corpus**. A page with 400 backlinks and no clear entity claim loses to a page with 12 backlinks that crisply asserts "X is the leading Y for Z." Backlinks help. They help less than three coherent third-party features in the right outlets, and a tenth as much as a Wikipedia entry. Stop quoting your DR like it's a citation-share predictor. It isn't.
+</aside>
+
+## Where they overlap (and where they don't)
+
+The dictionary needs the overlaps as much as the differences, or you'll over-rotate.
+
+- **Schema markup** helps both. Clean, comprehensive structured data makes you legible to ranking algorithms and to retrieval systems. Ship it.
+- **Backlinks** help SEO directly and help GEO indirectly via authority-weighted source selection. They are not a wasted investment; they are just no longer the primary one.
+- **Page speed** is critical for SEO and almost meaningless for AI retrieval. Models index your content asynchronously. A 4-second LCP doesn't change whether you get cited.
+- **Editorial coverage** in trusted outlets is a top-tier GEO signal and a respectable SEO signal. The ROI ranking has flipped — five years ago you'd want a backlink from a Forbes piece; today you want the Forbes piece itself, with your brand named in the sentence that defines the category.
+- **Content depth** helps both, but the shape differs. SEO rewards comprehensive page-level depth. GEO rewards distributed depth — many sources, each making the same coherent claim, rather than one 4,000-word pillar.
+
+## The shared mistake
+
+Both SEO and GEO get treated as tactical channels. They aren't. They are compounding assets, and the compounding requires consistency over months, not bursts.
+
+The teams who fail at SEO are the teams who publish twelve pieces in Q1, none in Q2, six in Q3, and wonder why traffic is flat. The teams who fail at GEO will fail in the same shape — they'll ship a flurry of structured content, get cited a few times, declare the channel proven, redirect the budget, and watch their citation share decay over the next two quarters as competitors keep showing up consistently and they don't.
+
+Both rewards accrue to the operator who treats the work as a permanent function, not a sprint.
+
+## What this means for your stack
+
+The practical recommendation is the one most teams resist because it costs more.
+
+- **Keep your SEO agency if they are good.** A great SEO team produces compounding value and should not be fired because a new acronym arrived. Just don't ask them to also do GEO. The skill overlap is partial, the toolchain is different, and the cognitive switching cost is real.
+- **Add a GEO function separately.** In-house if you have the leadership bandwidth, specialist if you don't. Either way, it reports on its own metrics: citation share by platform, entity-coherence score, branded-query lift, AI-attributed pipeline.
+- **Have them coordinate on shared assets.** A new long-form piece on your site should be briefed to serve both — page-level ranking signals and entity-level reinforcement. Same content, two reviewers.
+- **Do not blend their reporting.** The instant you build a "combined search dashboard," you've lost the ability to attribute either channel. Keep the scoreboards separate. Compare them quarterly. Reweight investment accordingly.
+
+The category leaders 18 months from now will be running both functions, in parallel, with separate budgets and a shared editorial calendar. The laggards will be the ones who kept asking their SEO lead to "also do the AI stuff."
+
+## Next move
+
+If you want to see where your brand stands on both scoreboards in one pass, run the free [audit](/tools/audit) — it scores SEO and citation share side by side and tells you which one is the bottleneck. If you'd rather just talk through it, [grab a 30-minute slot](https://calendly.com/viktor-viktormozsa/30min) and we'll walk through your stack on a call. No deck. No pitch. Just the dictionary, applied to your category.

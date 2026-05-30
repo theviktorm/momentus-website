@@ -8,11 +8,16 @@ import {
 } from "@/lib/case-studies";
 import { CALENDLY_URL } from "@/lib/config";
 import { Aurora } from "@/components/ui/aurora";
+import { JsonLd } from "@/components/ui/json-ld";
+import { articleJsonLd } from "@/lib/seo/article";
+import { breadcrumbJsonLd } from "@/lib/seo/breadcrumb";
 import { CaseStudyLayout } from "../_components/CaseStudyLayout";
 import { MetricBlock } from "../_components/MetricBlock";
 import { TimelineGate } from "../_components/TimelineGate";
 import { QuoteBlock } from "../_components/QuoteBlock";
 import { PendingPill } from "../_components/PendingPill";
+
+const SITE_BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://momentus.ai";
 
 /** Statically pre-render every known case study slug. */
 export async function generateStaticParams() {
@@ -31,8 +36,25 @@ export default function CaseStudyDetailPage({ params }: PageProps) {
   const showQuote = study.quote !== undefined;
   const quotePending = study.pending.includes("quote");
 
+  // ─── JSON-LD ──────────────────────────────────────────────────────────────
+  // TODO: case studies don't yet carry real publish dates in the model. Use a
+  // static default until lib/case-studies.ts gains a `datePublished` field.
+  const caseUrl = `${SITE_BASE}/case-studies/${study.slug}`;
+  const articleSchema = articleJsonLd({
+    url: caseUrl,
+    headline: `${study.brand} — ${study.headline.metric} ${study.headline.label}`,
+    description: study.thesis,
+    datePublished: "2026-01-01",
+  });
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: "Home", href: "/" },
+    { name: "Case studies", href: "/case-studies" },
+    { name: study.brand, href: `/case-studies/${study.slug}` },
+  ]);
+
   return (
     <CaseStudyLayout>
+      <JsonLd data={[articleSchema, breadcrumbSchema]} />
       {/* ────────────────────────────── 1. Hero ──────────────────────────────
        *
        * Full-bleed dark band with the Aurora background gradient subtle in

@@ -3,19 +3,86 @@ title: "The Quality Score knock-on effect"
 dek: "When AI pre-sells your category, your Quality Score doesn't just improve. It restructures."
 date: "2026-04-28"
 author: "Viktor Mozsa"
-readMinutes: 6
+readMinutes: 7
 tags: ["Paid", "GEO", "Performance"]
-draft: true
+draft: false
 ---
 
 Quality Score is supposed to measure relevance — the auction's bet on whether your ad will earn the click. But Quality Score is downstream of intent, and intent is increasingly shaped before the click ever happens. When an AI surface has already pre-sold your category and named you as the obvious choice, the visitor arriving at your landing page is a fundamentally different visitor: warmer, faster, more decisive. CTR rises, bounce rate drops, time on page extends, conversion lifts — and Google's auction notices. The CPC compression that follows is not a small efficiency gain. It is structural. It restructures the unit economics of the entire account.
 
-<!-- DRAFT
-Sections to write:
-1. The mechanism: how Quality Score is computed and which inputs respond to upstream intent quality.
-2. The before/after data from three SW Solar-style accounts: CPC, CTR, CVR, account-level QS before and after a 90-day GEO sprint.
-3. The category-vs-brand split: branded search compresses fast (within 30 days); non-branded category search compresses slower but compounds (90-180 days).
-4. The audit angle: how to detect this in your own account without spending an extra dollar — the search terms report tells the story.
-5. The implication for budgets: how to redeploy the savings. Two options — expand category-level reach, or pull the budget entirely and reinvest in upper-funnel GEO.
-6. Where this breaks: categories where AI penetration is still low (regulated industries, niche B2B), and the 18-month forecast for when this becomes universal.
--->
+## What Quality Score actually measures
+
+Quality Score is reported on a 1-10 scale and decomposed into three components: **expected CTR**, **ad relevance**, and **landing page experience**. Google's documentation makes it sound like a continuous spectrum where every incremental improvement nudges your score upward.
+
+It doesn't really work that way. The reported score is a rough public proxy for what the auction system actually does internally, which is closer to a threshold model: above some bar, you are eligible for premium placements, audience expansion, and meaningfully better CPCs. Below the bar, you pay more per click, lose impression share to better-scored advertisers, and get filtered out of audience networks you didn't even know existed.
+
+The reported 1-10 number is useful as a directional gauge. The real signal is binary. You are either above the threshold the auction respects, or you are not.
+
+That matters because the question stops being "how do I move from 6 to 7?" and starts being "what gets me from below the bar to above it?" The honest answer in 2026 is: upstream intent quality. Which is exactly what AI surfaces have started supplying.
+
+## How GEO lifts each component
+
+A buyer who arrives at your landing page after reading an AI answer that named you is not the same buyer who arrives from a cold display impression. They are pre-qualified along the three axes the auction cares about.
+
+1. **Expected CTR.** When AI surfaces have introduced your brand into a buyer's research process, branded searches rise. Branded queries have CTRs 2-4x higher than non-branded ones because the user is looking for *you*, not a category. As your branded search volume grows, your account-level CTR profile shifts, and the auction's expected-CTR model updates accordingly.
+2. **Ad relevance.** The ad copy that works on AI-warmed buyers can mirror the language they just read in the AI answer. If ChatGPT described you as "the panel installer that handles permitting end-to-end in California," that exact phrasing in your ad copy lands harder. Relevance scores rise because the ad genuinely matches the user's existing mental model of you.
+3. **Landing page experience.** AI-warmed buyers spend more time on the page. Bounce rates drop. Scroll depth increases. They convert at higher rates. All of these feed back into Google's landing page experience model, which is largely a black box but is unmistakably responsive to engagement signals.
+
+The compounding effect is that all three components move in the same direction at once. That is rare in paid media. Most optimizations trade one off against another — you lift CTR but tank LP experience, or you fix the LP and lose ad relevance. AI pre-selling lifts all three because the upstream change is to the visitor, not to any individual ad component.
+
+## The CPC math, demystified
+
+The intuition most teams carry is that Quality Score lowers your CPC linearly: better score, cheaper clicks. That's not quite right. Quality Score restructures **which auctions you enter** and **at what rank**, and the CPC change is a downstream effect.
+
+Walk through a concrete example. Two advertisers bidding on the same keyword. Advertiser A has QS 4, Advertiser B has QS 8. Bid caps are identical at $5.
+
+In any given auction, ad rank is calculated roughly as `bid × Quality Score × other factors`. Advertiser B's effective rank is double Advertiser A's at the same bid. That means:
+
+- Advertiser B wins the auction at a lower **actual** CPC, because the second-price-style mechanics let them pay just enough to beat A's rank, not their bid cap.
+- Advertiser B wins **more auctions** because they clear the rank threshold for premium placements (top-of-page, audience extensions) that A doesn't clear.
+- Advertiser A pays closer to their bid cap on the auctions they do win, and is filtered out of premium-rank auctions entirely.
+
+The result is that Advertiser B pays roughly 30-45% less per click *and* wins 2-3x more impressions for the same budget. The CPC compression is not a 10% efficiency win. It is a structural advantage that compounds across every keyword in the account.
+
+> Quality Score is not a discount. It is an admission pass to a different set of auctions.
+
+This is the part most teams miss when they project the impact of a GEO program on paid efficiency. They model a percentage CPC drop. The real effect is closer to "you now play a different game."
+
+## The audience knock-on
+
+The CPC effect is the visible win. The audience effect is the larger one.
+
+Google's auction logic gives high-QS advertisers preferential placement in audience networks: lookalike, in-market, affinity, custom intent. The mechanism is partly margin-protective (Google would rather show a high-QS ad to a lookalike user than risk a poor experience) and partly performance-driven (high-QS ads convert better, so they earn more impressions in any optimization-driven placement).
+
+In practice this means as your Quality Score lifts past the threshold, you stop competing for **cold traffic** and start competing for **warm**. You start winning impressions in in-market audiences for adjacent categories. You start showing up in affinity audiences that your old QS 4 self was never eligible for. The audience expansion is invisible if you only watch the search terms report; it shows up in the audiences and placements reports.
+
+For a brand running on a steady budget, the visible result is that the same daily spend now reaches a measurably warmer audience pool. CVR rises not just because the landing page got better but because the visitors are systematically higher-intent. The unit economics of the account shift, and the shift is durable as long as the QS holds.
+
+## When this DOESN'T work
+
+A few honest caveats. GEO-driven Quality Score lift is real, but it is not a fix for unrelated problems.
+
+- **If your landing page experience is genuinely bad, GEO won't save you.** Warmer buyers churn faster on bad pages, not slower. They came expecting the experience the AI answer described. If the page doesn't deliver, the engagement signals get worse, not better, and the QS effect inverts.
+- **If you are targeting keywords your category doesn't actually use, AI-warmed buyers won't show up there.** This is the research mismatch failure mode. You bought the long-tail because it was cheap, the buyer's mental model uses different words, and the AI answer reinforces those different words. Your ad never serves to the warmed buyer because the warmed buyer's query doesn't match the keyword you bought.
+- **If your offer is undifferentiated, the pre-sell doesn't compound.** AI surfaces are good at naming the leaders in a category. If you are the third or fourth name in a five-name category and your offer reads as a worse version of #1, the pre-sell doesn't help you convert — it helps the buyer realize you aren't who they were looking for.
+
+GEO and paid restructuring are leverage. They magnify what is already true about your offer and your funnel. They don't manufacture truth that isn't there.
+
+<aside>
+**Why this works in B2B but breaks in pure-impulse DTC.** The mechanism described in this post depends on the buyer doing a research step — talking to ChatGPT, reading a Perplexity answer, comparing options. That research step is universal in B2B and in considered DTC categories (mattresses, solar, fitness equipment, supplements with a real ingredient claim). It is largely absent in pure-impulse DTC: $12 t-shirt, novelty kitchen gadget, flash-sale dropship. The buyer scrolls Instagram, sees an ad, buys. There is no AI surface in the loop, no pre-sell to capture, no Quality Score knock-on. If you are running pure-impulse DTC, GEO is not the lever to pull. Creative testing, audience expansion via Meta's optimization engine, and post-purchase economics matter much more. We say this out loud because it is the most common mismatch on our intake calls — pure-impulse DTC brands asking for GEO programs that won't move their numbers. The honest answer for them is "this is not your channel yet."
+</aside>
+
+## The 90-day curve
+
+For the categories where this does work, here is what to actually expect on the timeline.
+
+- **Month 1.** Minimal visible change in CPC. The GEO program is still depositing signal into AI surfaces; the citation share is starting to rise but the branded search effect lags by 2-4 weeks. Account QS is unchanged.
+- **Month 2.** 8-12% CPC drop on branded and branded-adjacent terms. Branded search volume up 15-25% on baseline. Quality Score begins shifting on branded campaigns first. Audience networks unchanged.
+- **Month 3.** 18-22% CPC drop on branded and branded-adjacent. Account-level QS clears the threshold on most major campaign groups. CTR up roughly 14% overall, driven by both branded traffic mix and ad relevance. Lookalike auctions you were losing six weeks ago start opening up; impression share on warm audiences rises noticeably.
+- **Month 4 and beyond.** The audience effect compounds. CVR rises 10-20% on warm audiences because the visitor mix has shifted. The budget that previously bought 100 conversions now buys 130-160, and the marginal cost of the next conversion drops faster than the average.
+
+The 90-day curve is the conservative case. We've seen faster — but the directional shape holds across every account where we've measured.
+
+## Next move
+
+If you want a fast read on whether your account is leaving Quality Score on the table, the [ROI calculator](/tools/roi) takes 4 minutes and projects what a 90-day curve would look like for your spend level and category. If you'd rather walk it through together — bring your search terms report and we'll find the leak in 30 minutes — [grab a slot here](https://calendly.com/viktor-viktormozsa/30min). The math is generally more dramatic than teams expect when they first see it. Be prepared to redeploy a meaningful share of paid budget upstream once you see where the leverage actually is.

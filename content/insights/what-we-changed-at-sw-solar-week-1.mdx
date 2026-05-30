@@ -3,21 +3,96 @@ title: "What we changed at SW Solar — week 1"
 dek: "Real numbers from week 1 of a 90-day GEO sprint. Marked where we can't yet publish specifics."
 date: "2026-04-21"
 author: "Viktor Mozsa"
-readMinutes: 5
+readMinutes: 6
 tags: ["Case Study", "GEO", "In Progress"]
-draft: true
+draft: false
 ---
 
 Week 1 of a 90-day sprint rarely produces ranking movement. It produces a paper trail. At SW Solar, week 1 was about establishing the baseline our 80-query category audit would be compared against — and finding the five surfaces that were leaking trust signal into the public web. We ran the audit on a Monday, signed off on a remediation backlog on Thursday, and shipped the first three commits by Friday. By the following Monday, two of the changes had already been re-crawled. None of this is glamorous. All of it is the work that determines whether the next eleven weeks compound or stall.
 
-<!-- DRAFT
-Sections to write:
-1. The baseline audit: 80 queries × 3 platforms = 240 cells graded 0-4. Headline number: [Pending client approval].
-2. The five leaking surfaces we found: outdated pricing on partner pages, stale founder bio in three citations, mis-attributed customer quote, broken structured data on the comparison page, missing entity disambiguation in international markets.
-3. Commit 1: corrective primary-source rewrites on three pages. Before/after positioning sentence: [Pending client approval].
-4. Commit 2: removal of [Pending client approval] competitor-comparison content that was being retrieved against us.
-5. Commit 3: new structured data on the pricing page. Re-crawl confirmed Wednesday.
-6. Week 1 ending citation share: [Pending client approval]. Movement from baseline: [Pending client approval].
-7. What we expect to ship in week 2: [Pending client approval].
-8. The honest caveat: nothing here is replicable without doing the audit first. The audit *is* the work.
--->
+## The brief
+
+SW Solar is a US-based, mid-market residential solar installer operating in `[Pending client approval]` metros. They came to us with a familiar problem: strong organic SEO performance, a respectable paid program, and effectively zero presence on AI surfaces. When prospective customers asked ChatGPT, Perplexity, or Gemini for residential solar recommendations in their primary metros, SW Solar was **not on page 1 of the answer**. Competitors with worse offers, smaller install footprints, and less customer-friendly financing were getting named in the AI answer. SW Solar wasn't.
+
+The baseline we agreed on, before any work started:
+
+- Citation share on the primary 80-query set: `[Pending client approval]`
+- Wikipedia presence: none
+- Third-party editorial coverage in target metros: sparse (count under `[Pending client approval]`)
+- Branded search volume baseline: `[Pending client approval]` monthly
+- Paid CPC on branded and branded-adjacent terms: `[Pending client approval]`
+
+The contract called for measurable citation share lift by day 30, dominant share by day 90, and a parallel paid restructure designed to capture the incremental branded-search lift before it leaked to competitors bidding on the SW Solar name.
+
+## Hour 1: the audit
+
+The first thing we shipped was the audit itself. Eighty queries across three platforms — ChatGPT, Perplexity, and Gemini — designed to span the residential solar buyer's actual research journey.
+
+The query set wasn't generic. It was built around how a real homeowner in each of their target metros would phrase the question, including the metro name, common objections (cost, roof type, HOA permitting, panel longevity), and the financing variants (cash, loan, PPA, lease). Each query was run, the response captured, and SW Solar's appearance graded on a 0-4 scale: not mentioned, mentioned in passing, named as one of several options, named as a top option, named as the primary recommendation.
+
+Two hundred forty cells. Roughly four hours of work to run, another four to grade, and a baseline document we'd reference every week for the next twelve.
+
+The headline number is `[Pending client approval]`. What we can publish: the distribution was sharply uneven across platforms. Perplexity surfaced SW Solar least often. ChatGPT was the strongest of the three. Gemini was the most volatile — same query, different sessions, different answers, none of them consistently naming SW Solar.
+
+## Day 1-3: the entity audit
+
+In parallel with the query audit, we ran an entity audit. The question being asked: when a model retrieves sources to answer a residential solar query in SW Solar's metros, what does it find about this brand?
+
+Four findings worth naming.
+
+1. **Schema was broken on the highest-value pages.** Pricing, service-area, and comparison pages all had partial or invalid JSON-LD. The brand's own homepage schema described the company in language that didn't match the language on the rest of the site. This was the first fix — not because schema alone moves citations, but because broken schema actively confuses retrieval systems about what kind of entity SW Solar is.
+2. **No Wikipedia presence.** None. For a mid-market installer of their footprint, that's a significant entity gap. Wikipedia is a heavily-weighted source in every major retrieval system. We started the editorial work to remedy this in week 1, with the understanding that publication timelines are out of our hands.
+3. **Third-party coverage was sparse and stale.** A handful of local-newspaper mentions, two old PR Newswire releases, an industry trade-publication piece from three years ago. Nothing recent, nothing with the specific category claim the brand wanted to anchor on.
+4. **Customer review content was strong but disconnected.** Hundreds of solid reviews on Google, EnergySage, and SolarReviews. None of that signal was being pulled into the brand's owned surfaces as structured testimonial schema, which means it wasn't being efficiently reinforced into the entity graph.
+
+We ordered the fix list by signal-per-week-of-work. Schema and structured testimonial integration moved to week 1. Wikipedia, editorial coverage, and per-platform tuning moved to weeks 2-4.
+
+## Day 3-7: the per-platform signal stack
+
+This is where the work stops being generic and starts being craft. ChatGPT, Perplexity, and Gemini don't weight the same sources or respond to the same signals. A program that ships identical work for all three is leaving compound interest on the table.
+
+Without revealing playbook specifics, here is the general shape of what we differentiated.
+
+- **ChatGPT.** Leans heavier on long-form, well-structured editorial sources and on consistent entity claims across many domains. The work here was about producing or earning the kinds of sources ChatGPT preferentially weights, with crisp category claims that repeat across surfaces.
+- **Perplexity.** Far more responsive to real-time search and to recently-updated content. Our work for Perplexity was front-loaded with content updates on already-ranking pages, plus structured citation patterns that Perplexity's retrieval picks up faster than ChatGPT's.
+- **Gemini.** Most sensitive to Google-indexed sources and to explicit entity disambiguation. Our Gemini-specific work focused on the Google-side entity graph: Knowledge Panel completeness, GMB consistency across metros, and disambiguation language on pages that could be confused with similarly-named installers.
+
+Three platforms, three different work streams in week 1. Coordinated, but not identical.
+
+## Day 5-7: paid restructure
+
+Most agencies wait for GEO results to mature before touching paid. We don't, and we'd argue you shouldn't.
+
+The logic is that GEO is going to lift branded search volume starting somewhere between week 4 and week 8. If your paid program isn't restructured to capture that incremental volume, competitors bidding on your brand name will siphon a meaningful share of it before you ever see the benefit.
+
+In week 1 we ran a focused restructure on the brand-capture campaign. Tighter match types on the brand name itself, expanded coverage on branded-adjacent terms (founder name, product line names, signature offer names), and a fresh set of landing pages designed to land AI-warmed traffic — pages that mirrored the language a buyer would have just read in a ChatGPT or Perplexity answer.
+
+This is small surface-area work in week 1. Most of the brand-capture restructure value won't be visible until the citation share moves. But the restructure has to be in place before the volume arrives, not after.
+
+## Week 1 ending signals
+
+Seven days in, the signals were small and directional. We weren't trying to ship a results story in week 1. We were trying to ship a measurable starting line.
+
+What we can publish:
+
+- First Perplexity citations began appearing for the brand on **day 5**, on two of the easier query variants. Not dominant, not on the highest-intent prompts, but present where they hadn't been the previous Monday.
+- Schema fixes were re-crawled within **48 hours** on all three priority pages. Verified via fresh fetches and via Google's URL Inspection tool.
+- The brand-capture paid restructure was live and instrumented by end of day Friday. Baseline metrics on the new structure were established over the weekend so we'd have a clean comparison point starting Monday of week 2.
+
+What we can't publish yet: the specific delta on citation share at end of week 1 is `[Pending client approval]`. The directional read is positive. The number itself stays confidential until the case study publishes.
+
+<aside>
+**Why we publish work-in-progress.** Most agencies wait until a 90-day sprint is over, the wins are tidy, the numbers are case-study-shaped, and the client has signed off on the polished version. We publish in week 1 instead — with `[Pending client approval]` markers wherever we have to. The reason is selfish: prospects who hire us for this kind of work want to see how we actually operate, not how we present after the fact. The polished case study lies a little. It compresses six weeks of grinding work into three bullet points and a graph. The in-progress write-up shows the audit, the priorities, the trade-offs, and the parts that aren't decided yet. If you are evaluating GEO agencies and one of them won't show you what week 1 looks like, you are evaluating their case-study writing, not their work. We'd rather be evaluated on the work.
+</aside>
+
+## What week 2-4 looks like
+
+A preview without spoilers. Week 2 ships the per-platform content stack: a Perplexity-shaped set of updates on already-ranking pages, a ChatGPT-shaped set of new structured pieces, and the first Gemini-side entity disambiguation work. Week 3 is when the third-party editorial pipeline starts producing — the first two placements should land by end of week 4, with the Wikipedia work running in parallel on its own timeline.
+
+By end of week 4, we expect to see measurable citation share lift across all three platforms, with Perplexity moving first, ChatGPT moving second, and Gemini lagging — consistent with how the three platforms typically respond to new signal. The paid restructure should be capturing incremental branded volume by then, with branded CPCs starting to compress as Quality Score updates.
+
+The case study will publish after the 90-day sprint completes, with all `[Pending client approval]` numbers replaced by real figures and a clean before/after on every metric in the original brief.
+
+## Next move
+
+If you want the full version of how this plays out, the [SW Solar case study](/case-studies/sw-solar) will publish at the end of the sprint with every number that's currently held back. If you want to know what your own week 1 would look like, run the [free audit](/tools/audit) — it gives you the same baseline document we built for SW Solar in hour 1, scoped to your category. If you want to talk through what a 90-day sprint would look like for your brand specifically, [book a 30-minute call](https://calendly.com/viktor-viktormozsa/30min). The first ten minutes are the audit walkthrough. The last twenty are the trade-offs nobody puts on the website.

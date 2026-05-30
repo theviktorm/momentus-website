@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./ui/logo";
+import { NewsletterSignup } from "./ui/newsletter-signup";
 
 export function Footer() {
   return (
@@ -16,6 +17,12 @@ export function Footer() {
             <p className="mt-5 max-w-sm text-sm text-white/55">
               GEO × Paid. AI decides who deserves attention. Paid decides who profits from it.
             </p>
+            <div className="mt-6 max-w-sm">
+              <h4 className="text-xs uppercase tracking-[0.18em] text-white/45">Stay close</h4>
+              <div className="mt-3">
+                <NewsletterSignup variant="compact" source="footer" />
+              </div>
+            </div>
           </div>
           <div>
             <h4 className="text-xs uppercase tracking-[0.18em] text-white/45">More</h4>
@@ -23,6 +30,11 @@ export function Footer() {
               <li>
                 <Link className="text-white/70 transition hover:text-accent" href="/changelog">
                   Changelog
+                </Link>
+              </li>
+              <li>
+                <Link className="text-white/70 transition hover:text-accent" href="/careers">
+                  Careers
                 </Link>
               </li>
             </ul>

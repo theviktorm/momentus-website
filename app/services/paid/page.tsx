@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { JsonLd } from "@/components/ui/json-ld";
+import { serviceJsonLd } from "@/lib/seo/service";
+import { breadcrumbJsonLd } from "@/lib/seo/breadcrumb";
 import { ServiceLayout } from "../_components/ServiceLayout";
 import { PaidSampleReport } from "../_components/SampleReports";
 import { SHARED_CASES } from "../_components/shared";
+
+const SITE_BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://momentus.ai";
 
 const SUB =
   "When AI pre-sells your category, ads stop fighting cold attention. We run search, social and brand-search capture engineered to harvest the trust GEO creates — higher CTR, lower CPC, faster conversions.";
@@ -36,8 +41,21 @@ export const metadata: Metadata = {
 };
 
 export default function PaidPage() {
+  const serviceSchema = serviceJsonLd({
+    url: `${SITE_BASE}/services/paid`,
+    name: "Paid that compounds, not paid that taxes.",
+    description: SUB,
+    serviceType: "Paid Media Management",
+  });
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Paid", href: "/services/paid" },
+  ]);
+
   return (
     <>
+      <JsonLd data={[serviceSchema, breadcrumbSchema]} />
       <Nav />
       <main>
         <ServiceLayout

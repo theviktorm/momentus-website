@@ -4,6 +4,7 @@ import PlausibleProvider from "next-plausible";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { Cursor } from "@/components/ui/cursor";
 import { PageTransition } from "@/components/ui/page-transition";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/org-jsonld";
 
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <ScrollProgress />
+        <Cursor />
         <Providers>
           <PageTransition>{children}</PageTransition>
         </Providers>

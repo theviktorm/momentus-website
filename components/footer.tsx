@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/5 pb-10 pt-20">
       <div className="container">
-        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent p-1 text-bg">
@@ -16,6 +16,16 @@ export function Footer() {
             <p className="mt-5 max-w-sm text-sm text-white/55">
               GEO × Paid. AI decides who deserves attention. Paid decides who profits from it.
             </p>
+          </div>
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.18em] text-white/45">More</h4>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                <Link className="text-white/70 transition hover:text-accent" href="/changelog">
+                  Changelog
+                </Link>
+              </li>
+            </ul>
           </div>
           <div>
             <h4 className="text-xs uppercase tracking-[0.18em] text-white/45">Legal</h4>

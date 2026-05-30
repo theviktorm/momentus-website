@@ -8,6 +8,7 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ReadingProgress } from "@/components/ui/reading-progress";
 import { PostCard } from "@/components/ui/post-card";
+import { JsonLd } from "@/components/ui/json-ld";
 import { CALENDLY_URL } from "@/lib/config";
 import {
   formatDate,
@@ -15,7 +16,11 @@ import {
   getInsightBySlug,
   getRelatedInsights,
 } from "@/lib/insights";
+import { articleJsonLd } from "@/lib/seo/article";
+import { breadcrumbJsonLd } from "@/lib/seo/breadcrumb";
 import { insightsMdxComponents, resetH2Counter } from "./mdx-components";
+
+const SITE_BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://momentus.ai";
 
 export const dynamicParams = false;
 
@@ -48,8 +53,23 @@ export default function InsightDetail({ params }: { params: { slug: string } }) 
   // Reset the h2 counter per-render so SSR ordering is deterministic.
   resetH2Counter();
 
+  const insightUrl = `${SITE_BASE}/insights/${post.slug}`;
+  const articleSchema = articleJsonLd({
+    url: insightUrl,
+    headline: post.title,
+    description: post.dek,
+    datePublished: post.date,
+    authorName: post.author,
+  });
+  const breadcrumbSchema = breadcrumbJsonLd([
+    { name: "Home", href: "/" },
+    { name: "Insights", href: "/insights" },
+    { name: post.title, href: `/insights/${post.slug}` },
+  ]);
+
   return (
     <>
+      <JsonLd data={[articleSchema, breadcrumbSchema]} />
       <Nav />
       <ReadingProgress />
       <main className="pb-24 pt-32 md:pt-40">

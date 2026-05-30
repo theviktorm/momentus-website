@@ -44,7 +44,7 @@ export function Flywheel() {
   });
 
   return (
-    <section id="flywheel" className="relative overflow-hidden py-28">
+    <section id="flywheel" className="relative py-28">
       <VerticalDecorator />
       <div className="container relative">
         <div className="mx-auto mb-16 max-w-3xl text-center">

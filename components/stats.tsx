@@ -1,6 +1,7 @@
 "use client";
 import { NumberTicker } from "./ui/number-ticker";
 import { motion } from "framer-motion";
+import { SectionEyebrow } from "./ui/section-eyebrow";
 
 const items = [
   { v: 8, suffix: "x", label: "ChatGPT visitor growth in 12 months" },
@@ -14,9 +15,7 @@ export function Stats() {
     <section className="relative py-24">
       <div className="container">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <span className="font-mono inline-block rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-accent">
-            Why now
-          </span>
+          <SectionEyebrow id="why-now" />
           <h2 className="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-5xl">
             The market is being rewired in real time.
           </h2>

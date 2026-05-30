@@ -2,6 +2,8 @@
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { useRef } from "react";
 import { CinemaBand } from "./ui/cinema-band";
+import { SectionEyebrow } from "./ui/section-eyebrow";
+import { VerticalDecorator } from "./ui/vertical-decorator";
 
 const steps = [
   {
@@ -42,12 +44,11 @@ export function Flywheel() {
   });
 
   return (
-    <section id="flywheel" className="relative py-28">
-      <div className="container">
+    <section id="flywheel" className="relative overflow-hidden py-28">
+      <VerticalDecorator />
+      <div className="container relative">
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <span className="inline-block rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-accent">
-            The flywheel
-          </span>
+          <SectionEyebrow id="flywheel" />
           <h2 className="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-6xl">
             GEO creates trust. <span className="text-white/40">Paid multiplies it.</span>
           </h2>

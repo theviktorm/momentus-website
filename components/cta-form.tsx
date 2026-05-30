@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Magnetic } from "./ui/magnetic";
 import { CALENDLY_URL } from "@/lib/config";
 import { Check } from "lucide-react";
+import { SectionEyebrow } from "./ui/section-eyebrow";
 
 const bullets = [
   "Where you stand in AI recommendations today",
@@ -28,9 +29,7 @@ export function CTAForm() {
           <div className="pointer-events-none absolute inset-0 grid-bg opacity-30 mask-radial" />
 
           <div className="relative mx-auto max-w-3xl">
-            <span className="font-mono inline-block rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-accent">
-              Your window
-            </span>
+            <SectionEyebrow id="window" label="Your window" />
 
             <h2 className="font-display mt-6 text-balance text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
               Stop guessing. Start making deliberate decisions in a world where AI is already picking winners.

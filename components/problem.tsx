@@ -1,14 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
+import { SectionEyebrow } from "./ui/section-eyebrow";
 
 export function Problem() {
   return (
     <section className="relative py-28">
       <div className="container">
         <div className="mx-auto mb-14 max-w-3xl text-center">
-          <span className="font-mono inline-block rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-accent">
-            The split
-          </span>
+          <SectionEyebrow id="split" />
           <h2 className="font-display mt-4 text-balance text-4xl font-medium tracking-tight md:text-6xl">
             Most teams are fighting with{" "}
             <span className="text-white/40">one hand tied.</span>

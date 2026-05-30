@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { Cursor } from "@/components/ui/cursor";
+import { CommandPalette } from "@/components/ui/command-palette";
 import { PageTransition } from "@/components/ui/page-transition";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/org-jsonld";
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Cursor />
         <Providers>
           <PageTransition>{children}</PageTransition>
+          <CommandPalette />
         </Providers>
       </body>
     </html>
